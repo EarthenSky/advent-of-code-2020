@@ -1,0 +1,267 @@
+extern func print_int(int) void;
+extern func print_string(string) void;
+
+// This program solves advent of code day1 pt1
+package Day1Pt1 {
+    var active_part int = 1;
+	
+	var puzzle_input [200]int;
+
+    // This is the choser function
+    func main() int {
+        if (active_part == 1) {
+            if (part1()) {
+                print_string("part 1 succeeded!\n");
+            } else {
+                print_string("part 1 failed\n");
+            }
+        }
+
+        return(0);
+    }
+
+    func init_puzzle_input() void {
+		puzzle_input[0] = 1941;
+		puzzle_input[1] = 1887;
+		puzzle_input[2] = 1851;
+		puzzle_input[3] = 1874;
+		puzzle_input[4] = 1612;
+		puzzle_input[5] = 1960;
+		puzzle_input[6] = 1971;
+		puzzle_input[7] = 1983;
+		puzzle_input[8] = 1406;
+		puzzle_input[9] = 1966;
+		puzzle_input[10] = 1554;
+		puzzle_input[11] = 1892;
+		puzzle_input[12] = 1898;
+		puzzle_input[13] = 1926;
+		puzzle_input[14] = 1081;
+		puzzle_input[15] = 1992;
+		puzzle_input[16] = 1073;
+		puzzle_input[17] = 1603;
+		puzzle_input[18] = 177;
+		puzzle_input[19] = 1747;
+		puzzle_input[20] = 1063;
+		puzzle_input[21] = 1969;
+		puzzle_input[22] = 1659;
+		puzzle_input[23] = 1303;
+		puzzle_input[24] = 1759;
+		puzzle_input[25] = 1853;
+		puzzle_input[26] = 1107;
+		puzzle_input[27] = 1818;
+		puzzle_input[28] = 1672;
+		puzzle_input[29] = 1352;
+		puzzle_input[30] = 2002;
+		puzzle_input[31] = 1838;
+		puzzle_input[32] = 1985;
+		puzzle_input[33] = 1860;
+		puzzle_input[34] = 1141;
+		puzzle_input[35] = 1903;
+		puzzle_input[36] = 1334;
+		puzzle_input[37] = 1489;
+		puzzle_input[38] = 1178;
+		puzzle_input[39] = 1823;
+		puzzle_input[40] = 1499;
+		puzzle_input[41] = 1951;
+		puzzle_input[42] = 1225;
+		puzzle_input[43] = 1503;
+		puzzle_input[44] = 1417;
+		puzzle_input[45] = 1724;
+		puzzle_input[46] = 1165;
+		puzzle_input[47] = 1339;
+		puzzle_input[48] = 1816;
+		puzzle_input[49] = 1504;
+		puzzle_input[50] = 1588;
+		puzzle_input[51] = 1997;
+		puzzle_input[52] = 1946;
+		puzzle_input[53] = 1324;
+		puzzle_input[54] = 1771;
+		puzzle_input[55] = 1982;
+		puzzle_input[56] = 1272;
+		puzzle_input[57] = 1367;
+		puzzle_input[58] = 1439;
+		puzzle_input[59] = 1252;
+		puzzle_input[60] = 1902;
+		puzzle_input[61] = 1940;
+		puzzle_input[62] = 1333;
+		puzzle_input[63] = 1750;
+		puzzle_input[64] = 1512;
+		puzzle_input[65] = 1538;
+		puzzle_input[66] = 1168;
+		puzzle_input[67] = 2001;
+		puzzle_input[68] = 1797;
+		puzzle_input[69] = 1233;
+		puzzle_input[70] = 972;
+		puzzle_input[71] = 1306;
+		puzzle_input[72] = 1835;
+		puzzle_input[73] = 1825;
+		puzzle_input[74] = 1822;
+		puzzle_input[75] = 1880;
+		puzzle_input[76] = 1732;
+		puzzle_input[77] = 1785;
+		puzzle_input[78] = 1727;
+		puzzle_input[79] = 1275;
+		puzzle_input[80] = 1355;
+		puzzle_input[81] = 1793;
+		puzzle_input[82] = 1485;
+		puzzle_input[83] = 1297;
+		puzzle_input[84] = 1932;
+		puzzle_input[85] = 1519;
+		puzzle_input[86] = 1587;
+		puzzle_input[87] = 1382;
+		puzzle_input[88] = 1914;
+		puzzle_input[89] = 1745;
+		puzzle_input[90] = 1087;
+		puzzle_input[91] = 1996;
+		puzzle_input[92] = 1746;
+		puzzle_input[93] = 1962;
+		puzzle_input[94] = 1573;
+		puzzle_input[95] = 2008;
+		puzzle_input[96] = 1868;
+		puzzle_input[97] = 1278;
+		puzzle_input[98] = 1386;
+		puzzle_input[99] = 1238;
+		puzzle_input[100] = 1242;
+		puzzle_input[101] = 1170;
+		puzzle_input[102] = 1476;
+		puzzle_input[103] = 1161;
+		puzzle_input[104] = 1754;
+		puzzle_input[105] = 1807;
+		puzzle_input[106] = 1514;
+		puzzle_input[107] = 1189;
+		puzzle_input[108] = 1916;
+		puzzle_input[109] = 1884;
+		puzzle_input[110] = 1535;
+		puzzle_input[111] = 1217;
+		puzzle_input[112] = 1911;
+		puzzle_input[113] = 1861;
+		puzzle_input[114] = 1493;
+		puzzle_input[115] = 1409;
+		puzzle_input[116] = 1783;
+		puzzle_input[117] = 1222;
+		puzzle_input[118] = 1955;
+		puzzle_input[119] = 1673;
+		puzzle_input[120] = 1502;
+		puzzle_input[121] = 607;
+		puzzle_input[122] = 2010;
+		puzzle_input[123] = 1846;
+		puzzle_input[124] = 1819;
+		puzzle_input[125] = 1500;
+		puzzle_input[126] = 1799;
+		puzzle_input[127] = 1475;
+		puzzle_input[128] = 1146;
+		puzzle_input[129] = 1608;
+		puzzle_input[130] = 1806;
+		puzzle_input[131] = 1660;
+		puzzle_input[132] = 1618;
+		puzzle_input[133] = 1904;
+		puzzle_input[134] = 978;
+		puzzle_input[135] = 1762;
+		puzzle_input[136] = 1925;
+		puzzle_input[137] = 1185;
+		puzzle_input[138] = 1154;
+		puzzle_input[139] = 1239;
+		puzzle_input[140] = 1843;
+		puzzle_input[141] = 1986;
+		puzzle_input[142] = 533;
+		puzzle_input[143] = 1509;
+		puzzle_input[144] = 1913;
+		puzzle_input[145] = 287;
+		puzzle_input[146] = 1707;
+		puzzle_input[147] = 1115;
+		puzzle_input[148] = 1699;
+		puzzle_input[149] = 1859;
+		puzzle_input[150] = 1077;
+		puzzle_input[151] = 1915;
+		puzzle_input[152] = 1412;
+		puzzle_input[153] = 1360;
+		puzzle_input[154] = 1646;
+		puzzle_input[155] = 1973;
+		puzzle_input[156] = 1627;
+		puzzle_input[157] = 1755;
+		puzzle_input[158] = 1748;
+		puzzle_input[159] = 1769;
+		puzzle_input[160] = 1886;
+		puzzle_input[161] = 1422;
+		puzzle_input[162] = 1686;
+		puzzle_input[163] = 950;
+		puzzle_input[164] = 100;
+		puzzle_input[165] = 1372;
+		puzzle_input[166] = 1068;
+		puzzle_input[167] = 1370;
+		puzzle_input[168] = 1428;
+		puzzle_input[169] = 1870;
+		puzzle_input[170] = 1108;
+		puzzle_input[171] = 190;
+		puzzle_input[172] = 1891;
+		puzzle_input[173] = 1794;
+		puzzle_input[174] = 1228;
+		puzzle_input[175] = 1128;
+		puzzle_input[176] = 1365;
+		puzzle_input[177] = 1740;
+		puzzle_input[178] = 1888;
+		puzzle_input[179] = 1460;
+		puzzle_input[180] = 1758;
+		puzzle_input[181] = 1906;
+		puzzle_input[182] = 1917;
+		puzzle_input[183] = 1989;
+		puzzle_input[184] = 1251;
+		puzzle_input[185] = 1866;
+		puzzle_input[186] = 1560;
+		puzzle_input[187] = 1921;
+		puzzle_input[188] = 1777;
+		puzzle_input[189] = 1102;
+		puzzle_input[190] = 1850;
+		puzzle_input[191] = 1498;
+		puzzle_input[192] = 683;
+		puzzle_input[193] = 1840;
+		puzzle_input[194] = 1800;
+		puzzle_input[195] = 1112;
+		puzzle_input[196] = 1908;
+		puzzle_input[197] = 1442;
+		puzzle_input[198] = 1082;
+		puzzle_input[199] = 1071;
+	}
+
+	func part1() bool {
+		var comparisons_done int;
+		var i, j int;
+		init_puzzle_input();
+	
+		for (i = 0; i < 200; i = i + 1) {
+			var pivot, other int;
+			pivot = puzzle_input[i];
+
+			for (j = i+1; j < 200; j = j + 1) {
+				other = puzzle_input[j];
+				comparisons_done = comparisons_done + 1;
+				if(pivot + other == 2020) {
+					output_solution(pivot, other, comparisons_done);
+					return(true);
+				}
+			}
+		}
+
+		print_string("No numbers found?");
+	}
+	
+	func output_solution(pivot int, other int, comparisons_done int) void {
+		print_string("comparisons done: ");
+		print_int(comparisons_done);
+		print_string("\n");
+		
+		print_int(pivot);
+		print_string(" + ");
+		print_int(other);
+		print_string(" = ");
+		print_string("2020\n");
+
+		print_int(pivot);
+		print_string(" * ");
+		print_int(other);
+		print_string(" = ");
+		print_int(pivot * other);
+					
+		print_string("\n");
+	}
+}

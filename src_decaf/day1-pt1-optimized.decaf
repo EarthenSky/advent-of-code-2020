@@ -24,15 +24,7 @@ package Day1 {
             } else {
                 print_string("part 1 failed\n");
             }
-        // "else if" needs to look like this because decaf
-        // only supports else blocks. 
-        } else { if (active_part == 2) {
-            if (part2()) {
-                print_string("part 2 succeeded!\n");
-            } else {
-                print_string("part 2 failed\n");
-            }
-        } }
+        }
 
         return(0);
     }
@@ -242,7 +234,8 @@ package Day1 {
 
 	func part1() bool {
 		init_puzzle_input();
-		// Fill the ends_in_* arrays
+		
+		// Fill the "ends_in_*" arrays with the specific values
 		{
 			var i0, i1, i2, i3, i4, i5, i6, i7, i8, i9 int; // i stands for index
 			var i int;
@@ -300,9 +293,8 @@ package Day1 {
 					} 
 				}
 			}
-		
-			//TODO: print the buckets here:
 			
+			print_buckets(i0, i1, i2, i3, i4, i5, i6, i7, i8, i9);
 			
 			for (i = 0; i < 200; i = i + 1) {
 				var pivot int;
@@ -311,20 +303,7 @@ package Day1 {
 				if ((puzzle_input[i]-0) % 10 == 0) {
 					for (j = 0; j < i0; j = j + 1) {
 						if (pivot + ends_in_0[j] == 2020) {
-							print_int(pivot);
-							print_string(" + ");
-							print_int(ends_in_0[j]);
-							print_string(" = ");
-							print_string("2020\n");
-							
-							print_int(pivot);
-							print_string(" * ");
-							print_int(ends_in_0[j]);
-							print_string(" = ");
-							print_int(pivot * ends_in_0[j]);
-
-							print_string("\n");
-
+							output_solution(pivot, ends_in_0[j]);
 							return;
 						}	
 					}
@@ -332,19 +311,7 @@ package Day1 {
 					if((puzzle_input[i]-1) % 10 == 0) {
 						for (j = 0; j < i9; j = j + 1) {
 							if (pivot + ends_in_9[j] == 2020) {
-								print_int(pivot);
-								print_string(" + ");
-								print_int(ends_in_9[j]);
-								print_string(" = ");
-								print_string("2020\n");
-								
-								print_int(pivot);
-								print_string(" * ");
-								print_int(ends_in_9[j]);
-								print_string(" = ");
-								print_int(pivot * ends_in_9[j]);
-	
-							print_string("\n");
+								output_solution(pivot, ends_in_9[j]);
 								return;
 							}	
 						}
@@ -352,19 +319,7 @@ package Day1 {
 						if ((puzzle_input[i]-2) % 10 == 0) {
 							for (j = 0; j < i8; j = j + 1) {
 								if (pivot + ends_in_8[j] == 2020) {
-									print_int(pivot);
-									print_string(" + ");
-									print_int(ends_in_8[j]);
-									print_string(" = ");
-									print_string("2020\n");
-								
-									print_int(pivot);
-									print_string(" * ");
-									print_int(ends_in_8[j]);
-									print_string(" = ");
-									print_int(pivot * ends_in_8[j]);
-	
-							print_string("\n");
+									output_solution(pivot, ends_in_8[j]);
 									return;
 								}	
 							}
@@ -372,19 +327,7 @@ package Day1 {
 							if ((puzzle_input[i]-3) % 10 == 0) {
 								for (j = 0; j < i7; j = j + 1) {
 									if (pivot + ends_in_7[j] == 2020) {
-										print_int(pivot);
-										print_string(" + ");
-										print_int(ends_in_7[j]);
-										print_string(" = ");
-										print_string("2020\n");
-									
-										print_int(pivot);
-										print_string(" * ");
-										print_int(ends_in_7[j]);
-										print_string(" = ");
-										print_int(pivot * ends_in_7[j]);
-							print_string("\n");
-		
+										output_solution(pivot, ends_in_7[j]);
 										return;
 									}	
 								}
@@ -392,39 +335,15 @@ package Day1 {
 								if ((puzzle_input[i]-4) % 10 == 0) {
 									for (j = 0; j < i6; j = j + 1) {
 										if (pivot + ends_in_6[j] == 2020) {
-											print_int(pivot);
-											print_string(" + ");
-											print_int(ends_in_6[j]);
-											print_string(" = ");
-											print_string("2020\n");
-										
-											print_int(pivot);
-											print_string(" * ");
-											print_int(ends_in_6[j]);
-											print_string(" = ");
-											print_int(pivot * ends_in_6[j]);
-			
-							print_string("\n");
+											output_solution(pivot, ends_in_6[j]);
 											return;
 										}	
 									}
 								} else {
 									if ((puzzle_input[i]-5) % 10 == 0) {
 										for (j = 0; j < i5; j = j + 1) {
-											if (pivot + ends_in_5[j] == 2020) {
-												print_int(pivot);
-												print_string(" + ");
-												print_int(ends_in_5[j]);
-												print_string(" = ");
-												print_string("2020\n");
-											
-												print_int(pivot);
-												print_string(" * ");
-												print_int(ends_in_5[j]);
-												print_string(" = ");
-												print_int(pivot * ends_in_5[j]);
-				
-							print_string("\n");
+											if (pivot + ends_in_5[j] == 2020) {		
+												output_solution(pivot, ends_in_5[j]);
 												return;
 											}	
 										}
@@ -432,19 +351,7 @@ package Day1 {
 										if ((puzzle_input[i]-6) % 10 == 0) {
 											for (j = 0; j < i4; j = j + 1) {
 												if (pivot + ends_in_4[j] == 2020) {
-													print_int(pivot);
-													print_string(" + ");
-													print_int(ends_in_4[j]);
-													print_string(" = ");
-													print_string("2020\n");
-												
-													print_int(pivot);
-													print_string(" * ");
-													print_int(ends_in_4[j]);
-													print_string(" = ");
-													print_int(pivot * ends_in_4[j]);
-					
-							print_string("\n");
+													output_solution(pivot, ends_in_4[j]);
 													return;
 												}	
 											}
@@ -452,19 +359,7 @@ package Day1 {
 											if ((puzzle_input[i]-7) % 10 == 0) {
 												for (j = 0; j < i3; j = j + 1) {
 													if (pivot + ends_in_3[j] == 2020) {
-														print_int(pivot);
-														print_string(" + ");
-														print_int(ends_in_3[j]);
-														print_string(" = ");
-														print_string("2020\n");
-													
-														print_int(pivot);
-														print_string(" * ");
-														print_int(ends_in_3[j]);
-														print_string(" = ");
-														print_int(pivot * ends_in_3[j]);
-						
-							print_string("\n");
+														output_solution(pivot, ends_in_3[j]);
 														return;
 													}	
 												}
@@ -472,19 +367,7 @@ package Day1 {
 												if ((puzzle_input[i]-8) % 10 == 0) {
 													for (j = 0; j < i2; j = j + 1) {
 														if (pivot + ends_in_2[j] == 2020) {
-															print_int(pivot);
-															print_string(" + ");
-															print_int(ends_in_2[j]);
-															print_string(" = ");
-															print_string("2020\n");
-														
-															print_int(pivot);
-															print_string(" * ");
-															print_int(ends_in_2[j]);
-															print_string(" = ");
-															print_int(pivot * ends_in_2[j]);
-						
-							print_string("\n");
+															output_solution(pivot, ends_in_2[j]);
 															return;
 														}	
 													}
@@ -492,19 +375,7 @@ package Day1 {
 													if ((puzzle_input[i]-9) % 10 == 0) {
 														for (j = 0; j < i1; j = j + 1) {
 															if (pivot + ends_in_1[j] == 2020) {
-																print_int(pivot);
-																print_string(" + ");
-																print_int(ends_in_1[j]);
-																print_string(" = ");
-																print_string("2020\n");
-															
-																print_int(pivot);
-																print_string(" * ");
-																print_int(ends_in_1[j]);
-																print_string(" = ");
-																print_int(pivot * ends_in_1[j]);
-							
-							print_string("\n");
+																output_solution(pivot, ends_in_1[j]);
 																return;
 															}	
 														}
@@ -526,8 +397,62 @@ package Day1 {
 		print_string("No numbers found?");
 	}
 
-    func part2() bool {
+	func print_buckets(i0 int, i1 int, i2 int, i3 int, i4 int, i5 int, i6 int, i7 int, i8 int, i9 int) void {
+		print_string("Size of 0 bucket: ");
+		print_int(i0);
+		print_string(" numbers\n");
 
-		init_puzzle_input();
-    }
+		print_string("Size of 1 bucket: ");
+		print_int(i1);
+		print_string(" numbers\n");
+
+		print_string("Size of 2 bucket: ");
+		print_int(i2);
+		print_string(" numbers\n");
+
+		print_string("Size of 3 bucket: ");
+		print_int(i3);
+		print_string(" numbers\n");
+
+		print_string("Size of 4 bucket: ");
+		print_int(i4);
+		print_string(" numbers\n");
+
+		print_string("Size of 5 bucket: ");
+		print_int(i5);
+		print_string(" numbers\n");
+
+		print_string("Size of 6 bucket: ");
+		print_int(i6);
+		print_string(" numbers\n");
+
+		print_string("Size of 7 bucket: ");
+		print_int(i7);
+		print_string(" numbers\n");
+
+		print_string("Size of 8 bucket: ");
+		print_int(i8);
+		print_string(" numbers\n");
+
+		print_string("Size of 9 bucket: ");
+		print_int(i9);
+		print_string(" numbers\n");
+
+	}
+
+	func output_solution(pivot int, other int) void {
+		print_int(pivot);
+		print_string(" + ");
+		print_int(other);
+		print_string(" = ");
+		print_string("2020\n");
+		
+		print_int(pivot);
+		print_string(" * ");
+		print_int(other);
+		print_string(" = ");
+		print_int(pivot * other);
+					
+		print_string("\n");
+	}
 }
