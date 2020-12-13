@@ -21,7 +21,6 @@ def parse_input():
             data.append(line.replace("\n", "")) # strings are pointers. to speed this up, make data a single array.
     return data;
 
-
 def part1():
     results = {"trees": 0, "non-trees": 0}
     map_data = parse_input();
@@ -40,7 +39,6 @@ def part1():
         position.y += slope.y
 
     print(results)
-
 
 # returns trees hit
 def slope_dive(map_data, slope):
@@ -74,6 +72,7 @@ def part2():
         results["trees_mult"] *= slope_dive(map_data, slope)
 
     print(results)
+
 
 if __name__ == "__main__":
     start = time.time()
