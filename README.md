@@ -10,7 +10,9 @@ In addition to trying to solve all of the puzzles within 2020, my sub goals are 
 ### Directories:
 - src_decaf/ -> programs written using the decaf programming language as described here ( http://anoopsarkar.github.io/compilers-class/decafspec.html )
 - src_python/ -> using python version 3.7
-- src_cs/ -> c# using mono 6.12 through windows 10
+- src_cs/ -> c# using mono 6.12 on windows 10
+- src_lua/ -> luajit on windows 10
+- src_brainfuck/ -> https://copy.sh/brainfuck/ with default configuration (30000 memory size, 8-bit cell size, and no change EOF)
 
 #### Decaf Side Note:
 I'm currently not able to make my decaf compiler public, however it should be relatively trivial to convert those programs into C, java, etc.
