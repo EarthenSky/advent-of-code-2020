@@ -187,41 +187,46 @@
         << // return to second byte
     ]
     <
-
+    
     // adds 1 extra to the 6 digits & does a check
+    >>>> >> + <<<< <<
     >
-    >>>> >> +
+    [ 
+        - >>>> >> +
 
-    // 1s place
-    ---- ---- --
-    [ [ - > + < ] > ++++ ++++ ++ < < - > ] < + > // add 1 to left cell & give tmp 10 plus cur cell value if cur cell is not zero
-    > [ - < + > ] < // copy tmp to cur cell
+        // 1s place
+        ---- ---- --
+        [ [ - > + < ] > ++++ ++++ ++ < < - > ] < + > // add 1 to left cell & give tmp 10 plus cur cell value if cur cell is not zero
+        > [ - < + > ] < // copy tmp to cur cell
 
-    < // 10s place
-    ---- ---- --
-    [ [ - >> + << ] >> ++++ ++++ ++ << < - > ] < + > // add 1 to left cell & give tmp 10 if cur cell is not zero
-    >> [ - << + >> ] << // copy tmp to cur cell
+        < // 10s place
+        ---- ---- --
+        [ [ - >> + << ] >> ++++ ++++ ++ << < - > ] < + > // add 1 to left cell & give tmp 10 if cur cell is not zero
+        >> [ - << + >> ] << // copy tmp to cur cell
 
-    < // 100s place
-    ---- ---- --
-    [ [ - >>> + <<< ] >>> ++++ ++++ ++ <<< < - > ] < + > // add 1 to left cell & give tmp 10 if cur cell is not zero
-    >>> [ - <<< + >>> ] <<< // copy tmp to cur cell
+        < // 100s place
+        ---- ---- --
+        [ [ - >>> + <<< ] >>> ++++ ++++ ++ <<< < - > ] < + > // add 1 to left cell & give tmp 10 if cur cell is not zero
+        >>> [ - <<< + >>> ] <<< // copy tmp to cur cell
 
-    < //1k place
-    ---- ---- --
-    [ [ - >>>> + <<<< ] >>>> ++++ ++++ ++ <<<< < - > ] < + > // add 1 to left cell & give tmp 10 if cur cell is not zero
-    >>>> [ - <<<< + >>>> ] <<<< // copy tmp to cur cell
+        < //1k place
+        ---- ---- --
+        [ [ - >>>> + <<<< ] >>>> ++++ ++++ ++ <<<< < - > ] < + > // add 1 to left cell & give tmp 10 if cur cell is not zero
+        >>>> [ - <<<< + >>>> ] <<<< // copy tmp to cur cell
 
-    < //10k place
-    ---- ---- --
-    [ [ - >>>> > + <<<< < ] >>>> > ++++ ++++ ++ <<<< < < - > ] < + > // add 1 to left cell & give tmp 10 if cur cell is not zero
-    >>>> > [ - <<<< < + >>>> > ] <<<< < // copy tmp to cur cell
+        < //10k place
+        ---- ---- --
+        [ [ - >>>> > + <<<< < ] >>>> > ++++ ++++ ++ <<<< < < - > ] < + > // add 1 to left cell & give tmp 10 if cur cell is not zero
+        >>>> > [ - <<<< < + >>>> > ] <<<< < // copy tmp to cur cell
 
-    << // return to second byte
+        << // return to second byte
+    ]
     <
 
     - > - < // 0 sub 1 should overflow to 255 (plus 1 from before)
 ]
+
+# 
 
 > // do the final transfer for the second byte
 [ 
@@ -255,8 +260,8 @@
     << // return to second byte
 ]
 
-// ****************************************************************************************************************** //
 // output digits 
+>
 
 > 
 >>>> >> ++++ [- <<<< << ++++ ++++ ++++ >>>> >>] <<<< << // add 48 to digit before outputting // using a tmp
