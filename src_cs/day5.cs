@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Drawing; // for Point Struct
 
+// Day 5
 public class Program {
     public static void Main(string[] args) {
         var watch = new System.Diagnostics.Stopwatch();

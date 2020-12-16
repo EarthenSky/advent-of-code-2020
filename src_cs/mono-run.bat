@@ -6,4 +6,4 @@ echo compiling:
 call csc %1.cs
 echo --------------------------------------------------------------------------
 echo running:
-call mono %1.exe
+call mono %1.exe %2
