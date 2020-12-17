@@ -1,5 +1,6 @@
 local util = require("util");
 
+-- day9
 -- Assumption: all numbers are positive
 
 -- returns data as list
@@ -53,9 +54,43 @@ function getFirstXMASInvalidNumber(signalNumbers)
     return signalNumbers[start + size]
 end
 
+function getContiguousNumbersWhichSumTo(signalNumbers, targetNumber)
+    local i = 1
+    while i <= #signalNumbers do
+        local min, max = 2e52, -1
+        local j = i
+        local runningSum = 0
+
+        while j <= #signalNumbers and runningSum <= targetNumber do
+            if signalNumbers[j] > max then max = signalNumbers[j] end
+            if signalNumbers[j] < min then min = signalNumbers[j] end
+
+            runningSum = runningSum + signalNumbers[j]
+            if runningSum == targetNumber then -- case: found valid number
+                return min, max
+            end
+        
+            j = j + 1
+        end
+
+        i = i + 1
+    end
+
+    return -1, -1 -- invalid exit condition
+end
+
+util.startTimer()
+
 -- part 1
 
 local signalNumbers = loadData()
 local number = getFirstXMASInvalidNumber(signalNumbers)
-
 print("first XMAS invalid number is " .. number)
+
+-- part 2
+
+local min, max = getContiguousNumbersWhichSumTo(signalNumbers, number)
+print("encryption weakness points = min: " .. min .. ", max: " .. max)
+print("added together: " .. (min + max))
+
+util.endTimerAndPrint()

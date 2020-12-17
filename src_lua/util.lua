@@ -23,4 +23,18 @@ function Util.map(tbl, f)
     return t
 end
 
+clock = nil
+function Util.startTimer()
+    clock = os.clock()
+end
+
+function Util.endTimerAndPrint()
+    if clock ~= nil then
+        time_elapsed = os.clock() - clock
+        print("time elapsed: " .. time_elapsed .. "s")
+    else 
+        print("clock is nil")
+    end
+end
+
 return Util
