@@ -15,6 +15,14 @@ function Util.printTable(table)
     end
 end
 
+function Util.printTableHorizontal(table)
+    for k, v in pairs(table) do
+        io.write(v)
+        io.write(",")
+    end
+    io.write("\n")
+end
+
 function Util.map(tbl, f)
     local t = {}
     for k,v in pairs(tbl) do
