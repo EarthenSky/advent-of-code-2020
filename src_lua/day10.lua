@@ -1,6 +1,7 @@
 local bigint = require("lib/bigint") -- https://github.com/empyreuma/bigint.lua
 local util = require("util")
 
+-- day 10
 -- Assumption: all numbers are positive
 
 -- returns data as a list of numbers
