@@ -1,0 +1,5 @@
+# ignore exe
+day13
+
+# ignore compiling files
+tmp/
