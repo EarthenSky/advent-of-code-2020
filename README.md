@@ -7,6 +7,7 @@
 - src_cs/ -> c# using mono 6.12 on windows 10
 - src_lua/ -> luajit 2.1.0-beta3 on debian wsl
 - src_brainfuck/ -> https://copy.sh/brainfuck/ with default configuration (30000 memory size, 8-bit cell size, and no change EOF)
+- src_haskell/ -> ghc 8.4.4 on debian wsl
 
 ### Sub-goals:
 In addition to trying to solve all of the puzzles within 2020, my sub goals are (in order of importance):
