@@ -1,3 +1,4 @@
+use std::collections::HashSet;
 
 #[derive(Debug)]
 pub struct Instruction {
@@ -42,8 +43,6 @@ impl Instruction {
         }
     }
 
-    // --------------------------------------------- //
-
     fn update_mask(cur_mask: &mut String, new_mask: String) {
         *cur_mask = new_mask; // this is a little finicky since the String is actually passed but that's rust for ya
     }
@@ -73,4 +72,72 @@ impl Instruction {
         }
         memory[memory_index as usize] = running_value;
     }
+
+    // --------------------------------------------- //
+
+    // applies an instruction & only returns the updated non-mask ones.
+    pub fn apply_masks(&self, cur_mask: &mut String) -> Option<(String, u64)> {
+        match self.is_mask {
+            true => { Instruction::update_mask(cur_mask, self.mask_str.clone()); None },
+            false => Some( (Instruction::apply_mask_v2(cur_mask, self.memory_index), self.memory_value) ),
+        }
+    }
+    
+    fn apply_mask_v2(cur_mask: &String, memory_index: u64) -> String {
+        let mut deccumulator = memory_index; // used to calculate binary digits.
+
+        // generate the index value after the mask has been applied (memory address decoder)
+        let mut unresolved_index = String::new();
+        for ch in cur_mask.chars().rev() {
+            let rem = deccumulator % 2; // rem is < u32 so casting is all good.
+            deccumulator /= 2; // this is truncating integer division
+
+            let next_ch = match ch {
+                'X' => 'X',
+                '1' => '1',
+                '0' => match rem { 
+                    0 => '0',
+                    1 => '1', 
+                    _ => { panic!("something is wrong with % 2"); } 
+                },
+                _ => panic!("invalid mask character"),
+            };
+
+            unresolved_index.push(next_ch);
+        }
+
+        // this stupid solution to reversing a string in rust makes me want to solve this problem a different way...
+        unresolved_index.chars().rev().collect::<String>()
+    }
+
+    pub fn apply_inst_v2(assigned_locations: &mut HashSet<String>, inst: (String, u64)) -> u64 {
+        inst.1 * Instruction::rec_assign_loc(assigned_locations, inst.0)
+    }
+
+    // if performance is bad, use vec<u8> instead so that new strings don't need to be created every level of recursion.
+    // this function returns how many strings were appended to the hashset.
+    fn rec_assign_loc(assigned_locations: &mut HashSet<String>, unresolved_index: String) -> u64 {
+        if assigned_locations.contains(&unresolved_index) {
+            //if unresolved_index.matches('X').count() != 0 
+            //    { println!("overlap: {}", unresolved_index.matches('X').count()); }
+            0
+        } else {
+            assigned_locations.insert(unresolved_index.clone());
+            match unresolved_index.find('X') {
+                Some(_) => {
+                    let mut ret = 0;
+                    let mut working_string: String;
+
+                    working_string = unresolved_index.replacen('X', "0", 1);
+                    ret += Instruction::rec_assign_loc(assigned_locations, working_string);
+                    
+                    working_string = unresolved_index.replacen('X', "1", 1);
+                    ret += Instruction::rec_assign_loc(assigned_locations, working_string);
+                    ret
+                },
+                None => 1, // base case: no 'X's
+            }
+        }
+    }
+
 }
